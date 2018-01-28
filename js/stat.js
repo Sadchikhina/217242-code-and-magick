@@ -20,7 +20,17 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-window.renderStatistics = function (ctx) {
+var getMaxElement = function (arr) {
+  var maxElement = arr[0];
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+  return maxElement;
+};
+
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, 'rgba(0, 0, 0, 0.7');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
@@ -29,36 +39,24 @@ window.renderStatistics = function (ctx) {
   ctx.fillText('Ура вы победили!', CLOUD_X + TEXT_GAP, CLOUD_Y + TEXT_GAP + TEXT_HEIGHT);
   ctx.fillText('Список результатов:', CLOUD_X + TEXT_GAP, CLOUD_Y + TEXT_GAP * 2 + TEXT_HEIGHT);
 
+  var maxTime = getMaxElement(times);
+
   var getRandomCapacity = function () {
     var capacity = Math.random() * (max - min) + min;
     return 'rgba(22, 38, 204, ' + capacity + ')';
   };
 
-  var playerName = 'Вы';
+  players = ['Вы', 'Вова', 'Маша', 'Cwikla'];
 
-  ctx.fillText(playerName, CLOUD_X + BAR_GAP, CLOUD_Y + barHeight + HEADER_HEIGHT);
-  ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  ctx.fillRect(CLOUD_X + BAR_GAP, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
+  if (players[i]) {
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+  } else {
+    ctx.fillStyle = getRandomCapacity();
+  }
 
-  playerName = 'Вова';
-
-  ctx.fillStyle = '#000';
-  ctx.fillText(playerName, CLOUD_X + BAR_GAP * 2 + BAR_WIDTH, CLOUD_Y + barHeight + HEADER_HEIGHT);
-  ctx.fillStyle = getRandomCapacity();
-  ctx.fillRect(CLOUD_X + BAR_GAP * 2 + BAR_WIDTH, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
-
-  playerName = 'Маша';
-
-  ctx.fillStyle = '#000';
-  ctx.fillText(playerName, CLOUD_X + BAR_GAP * 3 + BAR_WIDTH * 2, CLOUD_Y + barHeight + HEADER_HEIGHT);
-  ctx.fillStyle = getRandomCapacity();
-  ctx.fillRect(CLOUD_X + BAR_GAP * 3 + BAR_WIDTH * 2, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
-
-  playerName = 'Cwikla';
-
-  ctx.fillStyle = '#000';
-  ctx.fillText(playerName, CLOUD_X + BAR_GAP * 4 + BAR_WIDTH * 3, CLOUD_Y + barHeight + HEADER_HEIGHT);
-  ctx.fillStyle = getRandomCapacity();
-  ctx.fillRect(CLOUD_X + BAR_GAP * 4 + BAR_WIDTH * 3, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
+  for (var i = 0; i < players.length; i++) {
+    ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + barHeight + HEADER_HEIGHT);
+    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight * times[i] / maxTime);
+  }
 
 };
