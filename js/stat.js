@@ -20,7 +20,7 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-window.renderStatistics = function (ctx, names, times) {
+window.renderStatistics = function (ctx) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, 'rgba(0, 0, 0, 0.7');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
@@ -34,14 +34,12 @@ window.renderStatistics = function (ctx, names, times) {
     return 'rgba(22, 38, 204, ' + capacity + ')';
   };
 
-  var playerIndex = 0;
   var playerName = 'Вы';
 
   ctx.fillText(playerName, CLOUD_X + BAR_GAP, CLOUD_Y + barHeight + HEADER_HEIGHT);
   ctx.fillStyle = 'rgba(255, 0, 0, 1)';
   ctx.fillRect(CLOUD_X + BAR_GAP, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
 
-  playerIndex = 1;
   playerName = 'Вова';
 
   ctx.fillStyle = '#000';
@@ -49,7 +47,6 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = getRandomCapacity();
   ctx.fillRect(CLOUD_X + BAR_GAP * 2 + BAR_WIDTH, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
 
-  playerIndex = 2;
   playerName = 'Маша';
 
   ctx.fillStyle = '#000';
@@ -57,7 +54,6 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = getRandomCapacity();
   ctx.fillRect(CLOUD_X + BAR_GAP * 3 + BAR_WIDTH * 2, CLOUD_Y + NAME_HEIGHT * 2, BAR_WIDTH, barHeight);
 
-  playerIndex = 3;
   playerName = 'Cwikla';
 
   ctx.fillStyle = '#000';
