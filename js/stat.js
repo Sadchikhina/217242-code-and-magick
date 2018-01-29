@@ -49,6 +49,8 @@ window.renderStatistics = function (ctx, players, times) {
       var capacity = Math.random() * (max - min) + min;
       return 'rgba(22, 38, 204, ' + capacity + ')';
     };
+    ctx.fillStyle = '#000';
+    ctx.fillText(Math.floor(times[i]), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - (barHeight * times[i] / maxTime) - NAME_HEIGHT * 2 - TEXT_GAP);
 
     ctx.fillStyle = '#000';
     ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + barHeight + HEADER_HEIGHT);
