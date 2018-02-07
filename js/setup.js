@@ -5,6 +5,7 @@ var WIZARDS_SURNAME = ['да Марья', 'Верон', 'Мирабелла', '�
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
+
 var getRandomCoat = function () {
   return COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)];
 };
@@ -12,6 +13,7 @@ var getRandomCoat = function () {
 var getRandomEyes = function () {
   return EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)];
 };
+
 
 var showSimilarWizards = function () {
 
@@ -114,9 +116,14 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
+
+/**
+ * Меняет цвет плаща и глаз
+ */
 var setupWizard = document.querySelector('.setup-player');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+
 
 wizardCoat.addEventListener('click', function () {
   wizardCoat.style.fill = getRandomCoat();
@@ -125,3 +132,29 @@ wizardCoat.addEventListener('click', function () {
 wizardEyes.addEventListener('click', function () {
   wizardEyes.style.fill = getRandomEyes();
 });
+
+
+/**
+ * Меняет цвет фаербола
+ */
+var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
+var getRandomFireball = function () {
+  return FIREBALL_COLOR[Math.floor(Math.random() * FIREBALL_COLOR.length)];
+};
+
+var wizardFireball = document.querySelector('.setup-fireball-wrap');
+
+wizardFireball.addEventListener('click', function () {
+  wizardFireball.style.fill = getRandomFireball();
+});
+
+
+/**
+ * Отправка формы
+ */
+document.querySelector('.setup-wizard-form').addEventListener('submit', closeWizardForm());
+
+var closeWizardForm = function () {
+  setup.classList.add('hidden');
+};
