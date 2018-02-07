@@ -5,6 +5,14 @@ var WIZARDS_SURNAME = ['да Марья', 'Верон', 'Мирабелла', '�
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var getRandomCoat = function () {
+  return COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)];
+};
+
+var getRandomEyes = function () {
+  return EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)];
+};
+
 var showSimilarWizards = function () {
 
   var renderWizard = function (elem) {
@@ -26,14 +34,6 @@ var showSimilarWizards = function () {
 
   var getRandomSurname = function () {
     return WIZARDS_SURNAME[Math.floor(Math.random() * WIZARDS_SURNAME.length)];
-  };
-
-  var getRandomCoat = function () {
-    return COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)];
-  };
-
-  var getRandomEyes = function () {
-    return EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)];
   };
 
   var fragment = document.createDocumentFragment();
@@ -59,21 +59,32 @@ var setupClose = setup.querySelector('.setup-close');
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 
-var openPopup = function () {
-  setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
-};
-
-var closePopup = function () {
-  setup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
-};
-
+/**
+ * Закрывает окно по нажатию на ESC
+ * @param  {type} evt
+ */
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
 };
+
+/**
+ * Открывает окно, закрывает по нажатию на ESC
+ */
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+/**
+ * Закрывает окно
+ */
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
 
 setupOpen.addEventListener('click', function () {
   openPopup();
@@ -101,4 +112,16 @@ setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
+});
+
+var setupWizard = document.querySelector('.setup-player');
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+
+wizardCoat.addEventListener('click', function () {
+  wizardCoat.style.fill = getRandomCoat();
+});
+
+wizardEyes.addEventListener('click', function () {
+  wizardEyes.style.fill = getRandomEyes();
 });
