@@ -112,11 +112,12 @@ setupClose.addEventListener('click', function () {
 
 
 /**
- * Меняет цвет плаща и глаз
+ * Меняет цвет плаща, глаз, фаербола
  */
 var setupWizard = document.querySelector('.setup-player');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+var wizardFireball = document.querySelector('.setup-fireball-wrap');
 
 wizardCoat.addEventListener('click', function () {
   wizardCoat.style.fill = getRandomElement(COAT_COLOR);
@@ -126,17 +127,9 @@ wizardEyes.addEventListener('click', function () {
   wizardEyes.style.fill = getRandomElement(EYES_COLOR);
 });
 
-
-/**
- * Меняет цвет фаербола
- */
-
-var wizardFireball = document.querySelector('.setup-fireball-wrap');
-
 wizardFireball.addEventListener('click', function () {
   wizardFireball.style.background = getRandomElement(FIREBALL_COLOR);
 });
-
 
 /**
  * Отправка формы
