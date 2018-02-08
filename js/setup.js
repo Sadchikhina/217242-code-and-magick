@@ -98,6 +98,16 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
 /**
 var userName = document.querySelector('.setup-user-name');
 
@@ -109,12 +119,6 @@ setupClose.addEventListener('click', function () {
   }
 });
 */
-
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
-});
 
 
 /**
@@ -153,7 +157,7 @@ wizardFireball.addEventListener('click', function () {
 /**
  * Отправка формы
  */
-document.querySelector('.setup-wizard-form').addEventListener('submit', closeWizardForm());
+document.querySelector('.setup-wizard-form').addEventListener('submit', closeWizardForm);
 
 var closeWizardForm = function () {
   setup.classList.add('hidden');
