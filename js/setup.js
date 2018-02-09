@@ -123,3 +123,11 @@ document.querySelector('.setup-wizard-form').addEventListener('submit', closeWiz
 var closeWizardForm = function () {
   setup.classList.add('hidden');
 };
+
+var userName = document.querySelector('.setup-user-name');
+
+userName.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    evt.stopPropagation();
+  }
+});
