@@ -25,9 +25,6 @@ var showSimilarWizards = function () {
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
-  getRandomElement(WIZARD_NAME);
-  getRandomElement(WIZARDS_SURNAME);
-
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < 4; i++) {
     var wizard = {
@@ -97,19 +94,6 @@ setupClose.addEventListener('keydown', function (evt) {
 setupClose.addEventListener('click', function () {
   closePopup();
 });
-
-/**
-var userName = document.querySelector('.setup-user-name');
-
-setupClose.addEventListener('click', function () {
-  if (userName.onfocus) {
-    closePopup.stopPropagation();
-  } else {
-    closePopup();
-  }
-});
-*/
-
 
 /**
  * Меняет цвет плаща, глаз, фаербола
